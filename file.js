@@ -6,7 +6,7 @@ const taskList = document.querySelector("#taskList");
 addBtn.addEventListener("click", function(){
   const value = inputEl.value.trim();
   if(value.length > 0){
-    taskList.push(value);
+    tasks.push(value);
     showApp(tasks);
   }
   inputEl.value = "";
@@ -18,6 +18,16 @@ function showApp(arr){
     for(const item of arr){
       let li = document.createElement("li");
       li.textContent = item;
+      li.style.marginTop = '10px';
+      let button = document.createElement("button");
+      // let button = document.createElement("button")
+      button.style.marginLeft = "10px";
+      button.innerHTML = 'Delete';
+      button.addEventListener("click", function(){
+        arr.splice(arr.indexOf(item), 1);
+        deleteTask();
+      });
+      li.append(button);
       taskList.append(li);
     }
   }
@@ -30,4 +40,8 @@ function showApp(arr){
   }
 }
 
-// showApp(tasks);
+showApp(tasks);
+
+function deleteTask(){
+  showApp(tasks);
+}
